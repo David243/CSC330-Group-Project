@@ -37,21 +37,21 @@ public class game{
 			if(root==null) {
 				System.out.println("error");
 			}else{
-				RecursiveTravers(root);
+				traverseRecursive(root);
 				System.out.println();
 			}
 		}
 		
-		private void RecursiveTravers(Node current) {
+		private void traverseRecursive(Node current) {
 			Node next;
 			if(current.left != null) {
 				next = current.left;
-				RecursiveTravers(next);
+				traverseRecursive(next);
 			}
 			System.out.print(current.key+" ");
 			if(current.right != null) {
 				next = current.right;
-				RecursiveTravers(next);
+				traverseRecursive(next);
 			}
 		}
 		
