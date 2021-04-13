@@ -33,7 +33,7 @@ public class game{
 		    return current;
 		}
 		
-		public void Traversal() {
+		public void traversal() {
 			if(root==null) {
 				System.out.println("error");
 			}else{
@@ -65,21 +65,21 @@ public class game{
 
 	public static void main(String[] args) {
 		binaryTree bt = new binaryTree();
-		bt.Traversal();
+		bt.traversal();
 	    bt.add(6);
-	    bt.Traversal();
+	    bt.traversal();
 	    bt.add(10);
-	    bt.Traversal();
+	    bt.traversal();
 	    bt.add(12);
-	    bt.Traversal();
+	    bt.traversal();
 	    bt.add(3);
-	    bt.Traversal();
+	    bt.traversal();
 	    bt.add(57);
-	    bt.Traversal();
+	    bt.traversal();
 	    bt.add(17);
-	    bt.Traversal();
+	    bt.traversal();
 	    bt.add(9);
-	    bt.Traversal();
+	    bt.traversal();
 	    
 	}
 } 
