@@ -65,7 +65,7 @@ public class game{
 			}
 		}
 		
-		private void traverseRecursive(Node current) 
+		private void traverseRecursive(Node current) //INORDER
 		{
 			Node next;
 			if(current.left != null) 
@@ -88,11 +88,14 @@ public class game{
 		public void run() {}
 		
 	}
-			
 	
+	public game() {
+		ui s = new ui();
+		s.displayScreen();
+	}
 
 	public static void main(String[] args) {
-		binaryTree bt = new binaryTree();
+		/*binaryTree bt = new binaryTree();
 		bt.traversal();
 	    bt.add(6, "B");
 	    bt.traversal();
@@ -108,6 +111,9 @@ public class game{
 	    bt.traversal();
 	    bt.add(9, "C");
 	    bt.traversal();
-	    
+	    */
+	   
+	   new game();
+		
 	}
-} 
+}
