@@ -112,8 +112,7 @@ public class game{
 	    bt.add(9, "C");
 	    bt.traversal();
 	    */
-	   
-	   new game();
+	    new game();
 		
 	}
 }
