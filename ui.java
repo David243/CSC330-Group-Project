@@ -10,7 +10,7 @@ package game;
 public class ui {
 	public void displayScreen() {
 			
-			JFrame screen= new JFrame("Game Name here"); //frame
+			JFrame screen= new JFrame("Hitamo"); //frame
 	       
 			JPanel upper =new JPanel(); //upper
 		    upper.setBounds(0,0,1000,300);  //left cushion,top cushion, width, height  
