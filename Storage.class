@@ -2,9 +2,9 @@ package game;
 
 public class Storage {
 
-	public static String story;
-	public static String lText;
-	public static String rText;
+	public String story;
+	public String lText;
+	public String rText;
 	
 	public Storage() {
 	}
