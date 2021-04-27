@@ -53,7 +53,8 @@ class Node
 		key = x;
 		this.story = story.story;
 		left = right = null;
-		leLabel = rLabel = null;
+		leLabel = story.lText;
+		rLabel = story.rText;
 	}
 	public boolean isLeaf() {
 		if(this.left == null && this.right == null) 
