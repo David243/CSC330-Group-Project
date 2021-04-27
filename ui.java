@@ -64,8 +64,8 @@ public class UI implements ActionListener
 	
 	public void gameScreen(String story, String lCh, String rCh) //(String story, String lCh, String rCh)
 	{	
-		Font sFont = new Font("Times New Roman", Font.PLAIN, 30);
-		Font cFont = new Font("Times New Roman", Font.PLAIN, 30);
+	Font sFont = new Font("Times New Roman", Font.PLAIN, 30);
+	Font cFont = new Font("Times New Roman", Font.PLAIN, 30);
 		
         label1 = new JTextArea(story);
         label1.setLineWrap(true);
@@ -73,9 +73,9 @@ public class UI implements ActionListener
         label1.setBounds(0,10,900,300);
         label1.setFont(sFont);
 		
-		upper = new JPanel(); //upper
-		upper.setBounds(0,0,1000,300);
-	    upper.setBackground(Color.white);//end of upper
+	upper = new JPanel(); //upper
+	upper.setBounds(0,0,1000,300);
+	upper.setBackground(Color.white);//end of upper
 		
         lower = new JPanel(); //lower
         lower.setBounds(0,300,1000,200);
@@ -102,6 +102,26 @@ public class UI implements ActionListener
         screen.setVisible(true); 
         
 	}
+	
+	public void endScreen(String story)
+	{
+	upper = new JPanel(); //upper
+	upper.setBounds(0,0,1000,300);
+	upper.setBackground(Color.white);//end of upper
+	    
+        lower = new JPanel(); //lower
+        lower.setBounds(0,300,1000,200);
+        lower.setBackground(Color.black); 
+        
+        restart = new JButton("Restart");
+        restart.setBackground(Color.red);
+        restart.addActionListener(this);
+        
+        lower.add(restart);
+        screen.add(upper);  
+        screen.add(lower); 
+        screen.setVisible(true); 
+	}
 
 
 	@Override
@@ -122,7 +142,14 @@ public class UI implements ActionListener
 			{
 				current = current.left;
 			}
-			gameScreen(current.story,current.leLabel,current.rLabel);
+			if(current.isaLeaf())
+			{
+				endScreen(current.story);
+			}
+			else
+			{
+				gameScreen(current.story,current.leLabel,current.rLabel);
+			}
 		}
 		else if(e.getSource() == right)
 		{
@@ -132,7 +159,21 @@ public class UI implements ActionListener
 			{
 				current = current.right;
 			}
-			gameScreen(current.story, current.leLabel,current.rLabel);
+			if(current.isaLeaf())
+			{
+				endScreen(current.story);
+			}
+			else
+			{
+				gameScreen(current.story,current.leLabel,current.rLabel);
+			}
+		}
+		else if(e.getSource() == restart)
+		{
+			upper.setVisible(false);
+			lower.setVisible(false);
+			current = bt.root;
+			gameScreen(current.story,current.leLabel,current.rLabel);
 		}
 	
 	}
