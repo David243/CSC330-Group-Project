@@ -1,0 +1,12 @@
+package game;
+
+public class Storage {
+
+	public static String story;
+	public static String lText;
+	public static String rText;
+	
+	public Storage() {
+	}
+
+}
