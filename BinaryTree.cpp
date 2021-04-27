@@ -1,29 +1,14 @@
 package game;
 
-public class game{
-	
-	public static class Node
-	{
-		int key;
-		String story;
-		Node left, right;
-		public Node(int x, String story) 
-		{
-			key = x; 
-			this.story = story;
-			left = right = null;
-		}
-	}
-	
-	public static class binaryTree implements Runnable
+public class BinaryTree
 	{
 		Node root;
 		
-		public binaryTree(int x, String story)
+		public BinaryTree(int x, String story)
 		{
 			root = new Node(x, story);
 		}
-		public binaryTree()
+		public BinaryTree()
 		{
 			root = null;
 		}
@@ -55,7 +40,6 @@ public class game{
 
 		    return current;
 		}
-		
 		public void traversal() 
 		{
 			if(root!=null) 
@@ -74,7 +58,7 @@ public class game{
 				traverseRecursive(next);
 			}
 			
-			System.out.print(current.key + current.story + " ");
+			System.out.print(current.key + " ");
 			
 			if(current.right != null) 
 			{
@@ -82,37 +66,28 @@ public class game{
 				traverseRecursive(next);
 			}
 		}
-		
-		
-		@Override
-		public void run() {}
-		
-	}
-	
-	public game() {
-		ui s = new ui();
-		s.displayScreen();
 	}
 
-	public static void main(String[] args) {
-		/*binaryTree bt = new binaryTree();
-		bt.traversal();
-	    bt.add(6, "B");
-	    bt.traversal();
-	    bt.add(10, "D");
-	    bt.traversal();
-	    bt.add(12, "E");
-	    bt.traversal();
-	    bt.add(3, "A");
-	    bt.traversal();
-	    bt.add(57, "G");
-	    bt.traversal();
-	    bt.add(17, "F");
-	    bt.traversal();
-	    bt.add(9, "C");
-	    bt.traversal();
-	    */
-	    new game();
-		
+class Node
+{
+	int key;
+	String story;
+	Node left, right;
+	public Node(int x, String story) 
+	{
+		key = x; 
+		this.story = story;
+		left = right = null;
+	}
+	public boolean isaLeaf()
+	{
+		if(this.right == null && this.left == null)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
