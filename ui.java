@@ -1,13 +1,29 @@
 package game;
 
-	import java.awt.Color;
-	import java.awt.Dimension;
-	import javax.swing.JButton;
-	import javax.swing.JFrame;
-	import javax.swing.JLabel;
-	import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+import java.util.ResourceBundle;
+
+public class UI implements ActionListener
+{
+	BinaryTree bt = new BinaryTree();
+	Node current;
+	JFrame screen;
+	JPanel upper;
+	JLabel titleLabel;
+	JTextArea label1;
+	JPanel lower;
+	JButton start, left, right;
 	
-public class ui {
 	public void startScreen()
 	{
 		
@@ -86,7 +102,155 @@ public class ui {
         screen.setVisible(true); 
         
 	}
-		
-		
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) 
+	{
+		if(e.getSource() == start)
+		{
+			upper.setVisible(false);
+			lower.setVisible(false);
+			current = bt.root;
+			gameScreen(current.story,current.leLabel,current.rLabel);
+		}
+		else if(e.getSource() == left)
+		{
+			upper.setVisible(false);
+			lower.setVisible(false);
+			if(current.left != null)
+			{
+				current = current.left;
+			}
+			gameScreen(current.story,current.leLabel,current.rLabel);
+		}
+		else if(e.getSource() == right)
+		{
+			upper.setVisible(false);
+			lower.setVisible(false);
+			if(current.right != null)
+			{
+				current = current.right;
+			}
+			gameScreen(current.story, current.leLabel,current.rLabel);
+		}
+	
+	}
+	
+	
+	
+	private static String Node45;
+	private static String Node34;
+	private static String Node70;
+	private static String Node24;
+	private static String Node38;
+	private static String Node62;
+	private static String Node80;
+	private static String Node21;
+	private static String Node27;
+	private static String Node37;
+	private static String Node41;
+	private static String Node79;
+	private static String Node82;
+	private static String Node26;
+	private static String Node28;
+	private static String Node81;
+	private static String Node83;
+	
+	private static void initFromPropBundle() {
+		// so we're expecting a file in our CLASSPATH called
+		// PropertyBundleDemo.properties
+		ResourceBundle bundle = ResourceBundle.getBundle("GameChoices");
+
+		if (bundle.containsKey("Node45")) {
+			Node45 = bundle.getString("Node45");
+		}
+		/*if (bundle.containsKey("Node45L")) {
+			Node45.leLabel = bundle.getString("Node45L");
+		}*/
+		if (bundle.containsKey("Node34")) {
+			Node34 = bundle.getString("Node34");
+		}
+		if (bundle.containsKey("Node70")) {
+			Node70 = bundle.getString("Node70");
+		}
+		if (bundle.containsKey("Node24")) {
+			Node24 = bundle.getString("Node24");
+		}
+		if (bundle.containsKey("Node38")) {
+			Node38 = bundle.getString("Node38");
+		}
+		if (bundle.containsKey("Node62")) {
+			Node62 = bundle.getString("Node62");
+		}
+		if (bundle.containsKey("Node80")) {
+			Node80 = bundle.getString("Node80");
+		}
+		if (bundle.containsKey("Node21")) {
+			Node21 = bundle.getString("Node21");
+		}
+		if (bundle.containsKey("Node27")) {
+			Node27 = bundle.getString("Node27");
+		}
+		if (bundle.containsKey("Node37")) {
+			Node37 = bundle.getString("Node37");
+		}
+		if (bundle.containsKey("Node41")) {
+			Node41 = bundle.getString("Node41");
+		}
+		if (bundle.containsKey("Node82")) {
+			Node82 = bundle.getString("Node82");
+		}
+		if (bundle.containsKey("Node26")) {
+			Node26 = bundle.getString("Node26");
+		}
+		if (bundle.containsKey("Node28")) {
+			Node28 = bundle.getString("Node28");
+		}
+		if (bundle.containsKey("Node81")) {
+			Node81 = bundle.getString("Node81");
+		}
+		if (bundle.containsKey("Node83")) {
+			Node83 = bundle.getString("Node83");
+		}
 		
 	}
+	
+	
+	public static void main(String[] args) {
+
+	    UI s = new UI();
+	    initFromPropBundle();
+	    
+	    int arr[] = {45,34,70,24,38,62,80,21,27,37,41,79,82,26,28,81,83};
+	    String stringArr[] = {Node45,Node34,Node70,Node24,Node38,Node62, 
+	    		Node80,Node21,Node27,Node37,Node41,Node79,Node82,Node26,
+	    		Node28,Node81,Node83};
+		for (int i = 0; i < arr.length;i++) {
+			s.bt.add(arr[i],stringArr[i]);
+		}
+	    
+//	    s.bt.add(45, Node45);
+//	    s.bt.add(34, Node34);
+//	    s.bt.add(70, Node70);
+//	    s.bt.add(24, Node24);
+//	    s.bt.add(38, Node38);
+//	    s.bt.add(62, Node62);
+//	    s.bt.add(62, Node80);
+//	    s.bt.add(21, Node21);
+//	    s.bt.add(27, Node27);
+//	    s.bt.add(37, Node37);
+//	    s.bt.add(41, Node41);
+//	    s.bt.add(79, Node79);
+//	    s.bt.add(82, Node82);
+//	    s.bt.add(26, Node26);
+//	    s.bt.add(28, Node28);
+//	    s.bt.add(81, Node81);
+//	    s.bt.add(83, Node83);
+	    s.startScreen();
+		
+	}
+
+}
+
+
