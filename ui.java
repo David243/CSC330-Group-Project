@@ -62,7 +62,7 @@ public class UI implements ActionListener
 		screen.setVisible(true);
 	}
 	
-	public void gameScreen(String story, String lCh, String rCh) //(String story, String lCh, String rCh)
+	public void gameScreen(String story, String lCH, String rCh) //(String story, String lCh, String rCh)
 	{	
 	Font sFont = new Font("Times New Roman", Font.PLAIN, 30);
 	Font cFont = new Font("Times New Roman", Font.PLAIN, 30);
@@ -81,7 +81,7 @@ public class UI implements ActionListener
         lower.setBounds(0,300,1000,200);
         lower.setBackground(Color.black); 
        
-        left = new JButton("test"); 
+        left = new JButton(lCH); 
         left.setBounds(100,100,300,300);
         left.setBackground(Color.white);
         left.addActionListener(this);
@@ -142,14 +142,14 @@ public class UI implements ActionListener
 			{
 				current = current.left;
 			}
-			if(current.isaLeaf())
+			/*if(current.isaLeaf())
 			{
 				endScreen(current.story);
 			}
 			else
 			{
 				gameScreen(current.story,current.leLabel,current.rLabel);
-			}
+			}*/
 		}
 		else if(e.getSource() == right)
 		{
@@ -159,27 +159,27 @@ public class UI implements ActionListener
 			{
 				current = current.right;
 			}
-			if(current.isaLeaf())
+			/*if(current.isaLeaf())
 			{
 				endScreen(current.story);
 			}
 			else
 			{
 				gameScreen(current.story,current.leLabel,current.rLabel);
-			}
+			}*/
 		}
-		else if(e.getSource() == restart)
+		/*else if(e.getSource() == restart)
 		{
 			upper.setVisible(false);
 			lower.setVisible(false);
 			current = bt.root;
 			gameScreen(current.story,current.leLabel,current.rLabel);
-		}
+		}*/
 	
 	}
 	
 	
-	
+	public static Storage TNode45;
 	private static String Node45;
 	private static String Node34;
 	private static String Node70;
@@ -206,6 +206,17 @@ public class UI implements ActionListener
 		if (bundle.containsKey("Node45")) {
 			Node45 = bundle.getString("Node45");
 		}
+		
+		if (bundle.containsKey("Node45")) {
+            Storage.story = bundle.getString("Node45");
+        }
+        if (bundle.containsKey("Node45L")) {
+            Storage.lText = bundle.getString("Node45L");
+        }
+        if (bundle.containsKey("Node45R")) {
+            Storage.rText = bundle.getString("Node45R");
+        }
+		
 		/*if (bundle.containsKey("Node45L")) {
 			Node45.leLabel = bundle.getString("Node45L");
 		}*/
@@ -267,8 +278,10 @@ public class UI implements ActionListener
 	    String stringArr[] = {Node45,Node34,Node70,Node24,Node38,Node62, 
 	    		Node80,Node21,Node27,Node37,Node41,Node79,Node82,Node26,
 	    		Node28,Node81,Node83};
-		for (int i = 0; i < arr.length;i++) {
-			s.bt.add(arr[i],stringArr[i]);
+	    Storage storage[] = {TNode45};
+	    
+		for (int i = 0; i < 1;i++) {
+			s.bt.add(arr[i],storage[i]);
 		}
 	    
 //	    s.bt.add(45, Node45);
@@ -293,5 +306,3 @@ public class UI implements ActionListener
 	}
 
 }
-
-
