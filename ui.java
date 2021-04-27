@@ -22,7 +22,7 @@ public class UI implements ActionListener
 	JLabel titleLabel;
 	JTextArea label1;
 	JPanel lower;
-	JButton start, left, right;
+	JButton start, left, right, restart;
 	
 	public void startScreen()
 	{
