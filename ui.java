@@ -142,14 +142,14 @@ public class UI implements ActionListener
 			{
 				current = current.left;
 			}
-			/*if(current.isaLeaf())
+			if(current.isLeaf())
 			{
 				endScreen(current.story);
 			}
 			else
 			{
 				gameScreen(current.story,current.leLabel,current.rLabel);
-			}*/
+			}
 		}
 		else if(e.getSource() == right)
 		{
@@ -159,112 +159,68 @@ public class UI implements ActionListener
 			{
 				current = current.right;
 			}
-			/*if(current.isaLeaf())
+			if(current.isLeaf())
 			{
 				endScreen(current.story);
 			}
 			else
 			{
 				gameScreen(current.story,current.leLabel,current.rLabel);
-			}*/
+			}
 		}
-		/*else if(e.getSource() == restart)
+		else if(e.getSource() == restart)
 		{
 			upper.setVisible(false);
 			lower.setVisible(false);
 			current = bt.root;
 			gameScreen(current.story,current.leLabel,current.rLabel);
-		}*/
+		}
 	
 	}
 	
 	
-	public static Storage TNode45;
-	private static String Node45;
-	private static String Node34;
-	private static String Node70;
-	private static String Node24;
-	private static String Node38;
-	private static String Node62;
-	private static String Node80;
-	private static String Node21;
-	private static String Node27;
-	private static String Node37;
-	private static String Node41;
-	private static String Node79;
-	private static String Node82;
-	private static String Node26;
-	private static String Node28;
-	private static String Node81;
-	private static String Node83;
+	private static Storage Node45 = new Storage();
+	private static Storage Node34 = new Storage();
+	private static Storage Node70 = new Storage();
+	private static Storage Node24 = new Storage();
+	private static Storage Node38 = new Storage();
+	private static Storage Node62 = new Storage();
+	private static Storage Node80 = new Storage();
+	private static Storage Node21 = new Storage();
+	private static Storage Node27 = new Storage();
+	private static Storage Node37 = new Storage();
+	private static Storage Node41 = new Storage();
+	private static Storage Node79 = new Storage();
+	private static Storage Node82 = new Storage();
+	private static Storage Node26 = new Storage();
+	private static Storage Node28 = new Storage();
+	private static Storage Node81 = new Storage();
+	private static Storage Node83 = new Storage();
 	
 	private static void initFromPropBundle() {
 		// so we're expecting a file in our CLASSPATH called
 		// PropertyBundleDemo.properties
 		ResourceBundle bundle = ResourceBundle.getBundle("GameChoices");
-
-		if (bundle.containsKey("Node45")) {
-			Node45 = bundle.getString("Node45");
-		}
 		
-		if (bundle.containsKey("Node45")) {
-            Storage.story = bundle.getString("Node45");
-        }
-        if (bundle.containsKey("Node45L")) {
-            Storage.lText = bundle.getString("Node45L");
-        }
-        if (bundle.containsKey("Node45R")) {
-            Storage.rText = bundle.getString("Node45R");
-        }
+		String names[] = {"Node45","Node34","Node70","Node24","Node38","Node62", 
+	    		"Node80","Node21","Node27","Node37","Node41","Node79","Node82","Node26",
+	    		"Node28","Node81","Node83"};
+		Storage sArr[] = {Node45,Node34,Node70,Node24,Node38,Node62, 
+	    		Node80,Node21,Node27,Node37,Node41,Node79,Node82,Node26,
+	    		Node28,Node81,Node83};
 		
-		/*if (bundle.containsKey("Node45L")) {
-			Node45.leLabel = bundle.getString("Node45L");
-		}*/
-		if (bundle.containsKey("Node34")) {
-			Node34 = bundle.getString("Node34");
-		}
-		if (bundle.containsKey("Node70")) {
-			Node70 = bundle.getString("Node70");
-		}
-		if (bundle.containsKey("Node24")) {
-			Node24 = bundle.getString("Node24");
-		}
-		if (bundle.containsKey("Node38")) {
-			Node38 = bundle.getString("Node38");
-		}
-		if (bundle.containsKey("Node62")) {
-			Node62 = bundle.getString("Node62");
-		}
-		if (bundle.containsKey("Node80")) {
-			Node80 = bundle.getString("Node80");
-		}
-		if (bundle.containsKey("Node21")) {
-			Node21 = bundle.getString("Node21");
-		}
-		if (bundle.containsKey("Node27")) {
-			Node27 = bundle.getString("Node27");
-		}
-		if (bundle.containsKey("Node37")) {
-			Node37 = bundle.getString("Node37");
-		}
-		if (bundle.containsKey("Node41")) {
-			Node41 = bundle.getString("Node41");
-		}
-		if (bundle.containsKey("Node82")) {
-			Node82 = bundle.getString("Node82");
-		}
-		if (bundle.containsKey("Node26")) {
-			Node26 = bundle.getString("Node26");
-		}
-		if (bundle.containsKey("Node28")) {
-			Node28 = bundle.getString("Node28");
-		}
-		if (bundle.containsKey("Node81")) {
-			Node81 = bundle.getString("Node81");
-		}
-		if (bundle.containsKey("Node83")) {
-			Node83 = bundle.getString("Node83");
-		}
+        for(int i = 0;i<names.length;i++) {
+        if (bundle.containsKey(names[i])) {
+            sArr[i].story = bundle.getString(names[i]);
+        }
+        if (bundle.containsKey(names[i]+"L")) {
+            sArr[i].lText = bundle.getString(names[i]+"L");
+        }
+        if (bundle.containsKey(names[i]+"R")) {
+            sArr[i].rText = bundle.getString(names[i]+"R");
+        }
+        
+        }
 		
 	}
 	
@@ -275,13 +231,12 @@ public class UI implements ActionListener
 	    initFromPropBundle();
 	    
 	    int arr[] = {45,34,70,24,38,62,80,21,27,37,41,79,82,26,28,81,83};
-	    String stringArr[] = {Node45,Node34,Node70,Node24,Node38,Node62, 
+	    Storage stArr[] = {Node45,Node34,Node70,Node24,Node38,Node62, 
 	    		Node80,Node21,Node27,Node37,Node41,Node79,Node82,Node26,
 	    		Node28,Node81,Node83};
-	    Storage storage[] = {TNode45};
 	    
-		for (int i = 0; i < 1;i++) {
-			s.bt.add(arr[i],storage[i]);
+		for (int i = 0; i < stArr.length;i++) {
+			s.bt.add(arr[i],stArr[i]);
 		}
 	    
 //	    s.bt.add(45, Node45);
