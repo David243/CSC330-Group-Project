@@ -33,7 +33,7 @@ public class UI implements ActionListener
 		treeHistory.add(x);
 	}
 	
-	public void On()
+	public void on()
 	{
 		screen = new JFrame("Hitamo");
 		startScreen();
@@ -117,9 +117,10 @@ public class UI implements ActionListener
         
 	}
 	
-	public void endScreen(String story)
+	public void endScreen(String story,String type)
 	{
 		Font sFont = new Font("Times New Roman", Font.PLAIN, 30);
+		Font sButton = new Font("Times New Roman", Font.PLAIN, 75);
 		
 		label1 = new JTextArea(story);
         label1.setLineWrap(true);
@@ -127,21 +128,38 @@ public class UI implements ActionListener
         label1.setBounds(0,10,900,300);
         label1.setFont(sFont);
         label1.setEditable(false);
+        label1.setForeground(Color.white);
 		
         upper = new JPanel(); //upper
-        upper.setBounds(0,0,1000,300);
-        upper.setBackground(Color.white);//end of upper
+        upper.setBounds(0,0,1000,300);//end of upper
 	    
         lower = new JPanel(); //lower
         lower.setBounds(0,300,1000,200);
-        lower.setBackground(Color.black); 
+        switch(type)
+        {
+        case "Good": label1.setBackground(Color.blue);
+        			 upper.setBackground(Color.blue);
+        			 lower.setBackground(Color.blue); 
+        break;
+        case "Bad": label1.setBackground(Color.red);
+        			upper.setBackground(Color.red);
+		 			lower.setBackground(Color.red); 
+		break;
+        case "CH": label1.setBackground(Color.gray);
+        		   upper.setBackground(Color.gray);
+		 		   lower.setBackground(Color.gray); 
+		 break;
         
-        restart = new JButton("restart");
-        restart.setBackground(Color.red);
+        }
+        
+        restart = new JButton("Restart");
+        restart.setBackground(Color.pink);
+        restart.setFont(sButton);
         restart.addActionListener(this);
         
         summary = new JButton("Summary");
-        summary.setBackground(Color.blue);
+        summary.setBackground(Color.pink);
+        summary.setFont(sButton);
         summary.addActionListener(this);
         
         upper.add(label1);
@@ -153,7 +171,8 @@ public class UI implements ActionListener
 	}
 
 	public void sumScreen(ArrayList<String> x) {
-		Font sFont = new Font("Times New Roman", Font.PLAIN, 30);
+		Font sFont = new Font("Times New Roman", Font.PLAIN, 45);
+		Font sButton = new Font("Times New Roman", Font.PLAIN, 75);
 		
 		label1 = new JTextArea(toString(x));
         label1.setLineWrap(true);
@@ -173,6 +192,7 @@ public class UI implements ActionListener
         restart = new JButton("Restart");
         restart.setBackground(Color.red);
         restart.addActionListener(this);
+        restart.setFont(sButton);
         
         upper.add(label1);
         lower.add(restart);
@@ -184,7 +204,7 @@ public class UI implements ActionListener
 	public String toString(ArrayList<String> x){
 		String text = "";
 		for(int i = 0; i < x.size(); i++) {
-			text += "for choice "+(i+1)+" you chose "+x.get(i)+"\n";
+			text += "Choice "+(i+1)+": You chose "+"\""+x.get(i)+"\""+"\n";
 		}
 		return text;
 	}
@@ -210,7 +230,7 @@ public class UI implements ActionListener
 			}
 			if(current.isLeaf())
 			{
-				endScreen(current.story);
+				endScreen(current.story, current.type);
 			}
 			else
 			{
@@ -228,7 +248,7 @@ public class UI implements ActionListener
 			}
 			if(current.isLeaf())
 			{
-				endScreen(current.story);
+				endScreen(current.story, current.type);
 			}
 			else
 			{
@@ -252,7 +272,7 @@ public class UI implements ActionListener
 	
 	public static void main(String[] args) {
 
-	    UI s = new UI();
+	    UI game = new UI();
 	    
 		GameChoices gc = new GameChoices();
 		gc.initFromPropBundle();
@@ -260,11 +280,10 @@ public class UI implements ActionListener
 	    
 	    
 	    int arr[] = {45,34,70,24,38,62,80,21,27,37,41,79,82,26,28,81,83};
-	    Storage[] stringArr = Arrays.copyOf(GameChoices.stringArr(), arr.length);
+	    Storage[] stringArr = Arrays.copyOf(gc.stringArr(), arr.length);
 		for (int i = 0; i < arr.length;i++) {
-			s.bt.add(arr[i],stringArr[i]);
+			game.bt.add(arr[i],stringArr[i]);
 		}
-	    
 //	    s.bt.add(45, Node45);
 //	    s.bt.add(34, Node34);
 //	    s.bt.add(70, Node70);
@@ -282,7 +301,7 @@ public class UI implements ActionListener
 //	    s.bt.add(28, Node28);
 //	    s.bt.add(81, Node81);
 //	    s.bt.add(83, Node83);
-	    s.On();
+	    game.on();
 		
 	}
 
