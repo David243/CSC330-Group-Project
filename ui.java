@@ -27,14 +27,17 @@ public class UI implements ActionListener
 	JPanel lower;
 	JButton start, left, right, restart;
 	
-	
+	public void On()
+	{
+		screen = new JFrame("Hitamo");
+		startScreen();
+	}
 	public void startScreen()
 	{
 		
 		Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
 		Font sButton = new Font("Times New Roman", Font.PLAIN, 75);
 		
-		screen = new JFrame("Hitamo");
 		upper = new JPanel();
 		lower = new JPanel();
 		titleLabel = new JLabel("Hitamo");
@@ -175,8 +178,7 @@ public class UI implements ActionListener
 		{
 			upper.setVisible(false);
 			lower.setVisible(false);
-			current = bt.root;
-			gameScreen(current.story,current.leLabel,current.rLabel);
+			startScreen();
 		}
 	
 	}
@@ -215,7 +217,7 @@ public class UI implements ActionListener
 //	    s.bt.add(28, Node28);
 //	    s.bt.add(81, Node81);
 //	    s.bt.add(83, Node83);
-	    s.startScreen();
+	    s.On();
 		
 	}
 
