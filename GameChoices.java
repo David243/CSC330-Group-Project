@@ -1,11 +1,12 @@
-package edu.cuny.csi.csc330.project;
+package game;
 
 import java.util.ResourceBundle;
+
 
 public class GameChoices {
 
 	
-//	private List<BinaryTree> treeHistory = new ArrayList<BinaryTree>();
+
 
 	private static Storage Node45 = new Storage();
 	private static Storage Node34 = new Storage();
@@ -25,8 +26,10 @@ public class GameChoices {
 	private static Storage Node81 = new Storage();
 	private static Storage Node83 = new Storage();
 	
+
 	
-	static void initFromPropBundle() {
+	
+	void initFromPropBundle() {
 		// so we're expecting a file in our CLASSPATH called
 		// PropertyBundleDemo.properties
 		ResourceBundle bundle = ResourceBundle.getBundle("GameChoices");
