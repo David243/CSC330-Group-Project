@@ -112,6 +112,8 @@ public class UI implements ActionListener
 	
 	public void endScreen(String story)
 	{
+	Font sFont = new Font("Times New Roman", Font.PLAIN, 30);
+	
 	upper = new JPanel(); //upper
 	upper.setBounds(0,0,1000,300);
 	upper.setBackground(Color.white);//end of upper
@@ -119,11 +121,18 @@ public class UI implements ActionListener
         lower = new JPanel(); //lower
         lower.setBounds(0,300,1000,200);
         lower.setBackground(Color.black); 
+	
+	label1 = new JTextArea(story);
+        label1.setLineWrap(true);
+        label1.setWrapStyleWord(true);
+        label1.setBounds(0,10,900,300);
+        label1.setFont(sFont);
         
         restart = new JButton("Restart");
         restart.setBackground(Color.red);
         restart.addActionListener(this);
         
+	upper.add(label1);
         lower.add(restart);
         screen.add(upper);  
         screen.add(lower); 
