@@ -128,9 +128,9 @@ public class UI implements ActionListener
         label1.setFont(sFont);
         label1.setEditable(false);
 		
-	upper = new JPanel(); //upper
-	upper.setBounds(0,0,1000,300);
-	upper.setBackground(Color.white);//end of upper
+        upper = new JPanel(); //upper
+        upper.setBounds(0,0,1000,300);
+        upper.setBackground(Color.white);//end of upper
 	    
         lower = new JPanel(); //lower
         lower.setBounds(0,300,1000,200);
@@ -155,7 +155,7 @@ public class UI implements ActionListener
 	public void sumScreen(ArrayList<String> x) {
 		Font sFont = new Font("Times New Roman", Font.PLAIN, 30);
 		
-		label1 = new JTextArea(x.toString());
+		label1 = new JTextArea(toString(x));
         label1.setLineWrap(true);
         label1.setWrapStyleWord(true);
         label1.setBounds(0,10,900,300);
@@ -179,6 +179,14 @@ public class UI implements ActionListener
         screen.add(upper);  
         screen.add(lower); 
         screen.setVisible(true); 
+	}
+	
+	public String toString(ArrayList<String> x){
+		String text = "";
+		for(int i = 0; i < x.size(); i++) {
+			text += "for choice "+(i+1)+" you chose "+x.get(i)+"\n";
+		}
+		return text;
 	}
 	
 	@Override
