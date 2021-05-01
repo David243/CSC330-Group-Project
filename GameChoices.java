@@ -5,29 +5,23 @@ import java.util.ResourceBundle;
 
 public class GameChoices {
 
-	
-
-
-	private static Storage Node45 = new Storage();
-	private static Storage Node34 = new Storage();
-	private static Storage Node70 = new Storage();
-	private static Storage Node24 = new Storage();
-	private static Storage Node38 = new Storage();
-	private static Storage Node62 = new Storage();
-	private static Storage Node80 = new Storage();
-	private static Storage Node21 = new Storage();
-	private static Storage Node27 = new Storage();
-	private static Storage Node37 = new Storage();
-	private static Storage Node41 = new Storage();
-	private static Storage Node79 = new Storage();
-	private static Storage Node82 = new Storage();
-	private static Storage Node26 = new Storage();
-	private static Storage Node28 = new Storage();
-	private static Storage Node81 = new Storage();
-	private static Storage Node83 = new Storage();
-	
-
-	
+	private Storage Node45 = new Storage();
+	private Storage Node34 = new Storage();
+	private Storage Node70 = new Storage();
+	private Storage Node24 = new Storage();
+	private Storage Node38 = new Storage();
+	private Storage Node62 = new Storage();
+	private Storage Node80 = new Storage();
+	private Storage Node21 = new Storage();
+	private Storage Node27 = new Storage();
+	private Storage Node37 = new Storage();
+	private Storage Node41 = new Storage();
+	private Storage Node79 = new Storage();
+	private Storage Node82 = new Storage();
+	private Storage Node26 = new Storage();
+	private Storage Node28 = new Storage();
+	private Storage Node81 = new Storage();
+	private Storage Node83 = new Storage();
 	
 	void initFromPropBundle() {
 		// so we're expecting a file in our CLASSPATH called
@@ -51,25 +45,21 @@ public class GameChoices {
         	if (bundle.containsKey(names[i]+"R")) {
         		sArr[i].rText = bundle.getString(names[i]+"R");
         	}
+        	if (bundle.containsKey(names[i]+"T")) {
+        		sArr[i].type = bundle.getString(names[i]+"T");
+        	}
         
         }
 		
 	}
-	
-	
-	public static Storage[] stringArr() {
+
+	public Storage[] stringArr()
+	{
 		Storage[] stringArr = {Node45,Node34,Node70,Node24,Node38,Node62, 
 	    		Node80,Node21,Node27,Node37,Node41,Node79,Node82,Node26,
 	    		Node28,Node81,Node83};
 	
-	return stringArr;	
-	}
-	
-
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
+		return stringArr;	
 	}
 
 }
