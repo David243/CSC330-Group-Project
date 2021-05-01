@@ -11,13 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import java.util.ResourceBundle;
 import java.util.*;
 
-import edu.cuny.csi.csc330.project.GameChoices;
+
 
 public class UI implements ActionListener
 {
+	
 	BinaryTree bt = new BinaryTree();
 	Node current;
 	JFrame screen;
@@ -25,7 +25,13 @@ public class UI implements ActionListener
 	JLabel titleLabel;
 	JTextArea label1;
 	JPanel lower;
-	JButton start, left, right, restart;
+	JButton start, left, right, restart, summary;
+	
+ 	private ArrayList<String> treeHistory = new ArrayList<String>();
+ 	
+	public void listAdd(String x) {
+		treeHistory.add(x);
+	}
 	
 	public void On()
 	{
@@ -68,7 +74,7 @@ public class UI implements ActionListener
 		screen.add(lower);
 		screen.setVisible(true);
 	}
-	
+
 	public void gameScreen(String story, String lCH, String rCh) //(String story, String lCh, String rCh)
 	{	
 	Font sFont = new Font("Times New Roman", Font.PLAIN, 30);
@@ -79,6 +85,7 @@ public class UI implements ActionListener
         label1.setWrapStyleWord(true);
         label1.setBounds(0,10,900,300);
         label1.setFont(sFont);
+        label1.setEditable(false);
 		
         upper = new JPanel(); //upper
         upper.setBounds(0,0,1000,300);
@@ -112,8 +119,15 @@ public class UI implements ActionListener
 	
 	public void endScreen(String story)
 	{
-	Font sFont = new Font("Times New Roman", Font.PLAIN, 30);
-	
+		Font sFont = new Font("Times New Roman", Font.PLAIN, 30);
+		
+		label1 = new JTextArea(story);
+        label1.setLineWrap(true);
+        label1.setWrapStyleWord(true);
+        label1.setBounds(0,10,900,300);
+        label1.setFont(sFont);
+        label1.setEditable(false);
+		
 	upper = new JPanel(); //upper
 	upper.setBounds(0,0,1000,300);
 	upper.setBackground(Color.white);//end of upper
@@ -121,24 +135,52 @@ public class UI implements ActionListener
         lower = new JPanel(); //lower
         lower.setBounds(0,300,1000,200);
         lower.setBackground(Color.black); 
-	
-	label1 = new JTextArea(story);
-        label1.setLineWrap(true);
-        label1.setWrapStyleWord(true);
-        label1.setBounds(0,10,900,300);
-        label1.setFont(sFont);
         
-        restart = new JButton("Restart");
+        restart = new JButton("restart");
         restart.setBackground(Color.red);
         restart.addActionListener(this);
         
-	upper.add(label1);
+        summary = new JButton("Summary");
+        summary.setBackground(Color.blue);
+        summary.addActionListener(this);
+        
+        upper.add(label1);
         lower.add(restart);
+        lower.add(summary);
         screen.add(upper);  
         screen.add(lower); 
         screen.setVisible(true); 
 	}
 
+	public void sumScreen(ArrayList<String> x) {
+		Font sFont = new Font("Times New Roman", Font.PLAIN, 30);
+		
+		label1 = new JTextArea(x.toString());
+        label1.setLineWrap(true);
+        label1.setWrapStyleWord(true);
+        label1.setBounds(0,10,900,300);
+        label1.setFont(sFont);
+        label1.setEditable(false);
+		
+        upper = new JPanel(); //upper
+        upper.setBounds(0,0,1000,300);
+        upper.setBackground(Color.white);//end of upper
+	    
+        lower = new JPanel(); //lower
+        lower.setBounds(0,300,1000,200);
+        lower.setBackground(Color.black); 
+        
+        restart = new JButton("Restart");
+        restart.setBackground(Color.red);
+        restart.addActionListener(this);
+        
+        upper.add(label1);
+        lower.add(restart);
+        screen.add(upper);  
+        screen.add(lower); 
+        screen.setVisible(true); 
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
@@ -155,6 +197,7 @@ public class UI implements ActionListener
 			lower.setVisible(false);
 			if(current.left != null)
 			{
+				listAdd(current.leLabel);
 				current = current.left;
 			}
 			if(current.isLeaf())
@@ -172,6 +215,7 @@ public class UI implements ActionListener
 			lower.setVisible(false);
 			if(current.right != null)
 			{
+				listAdd(current.rLabel);
 				current = current.right;
 			}
 			if(current.isLeaf())
@@ -187,20 +231,24 @@ public class UI implements ActionListener
 		{
 			upper.setVisible(false);
 			lower.setVisible(false);
+			treeHistory.clear();
 			startScreen();
+		}
+		else if(e.getSource() == summary) {
+			upper.setVisible(false);
+			lower.setVisible(false);
+			sumScreen(treeHistory);
 		}
 	
 	}
-	
-	
-
-	
 	
 	public static void main(String[] args) {
 
 	    UI s = new UI();
 	    
-		GameChoices.initFromPropBundle();
+		GameChoices gc = new GameChoices();
+		gc.initFromPropBundle();
+	
 	    
 	    
 	    int arr[] = {45,34,70,24,38,62,80,21,27,37,41,79,82,26,28,81,83};
