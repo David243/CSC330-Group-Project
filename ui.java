@@ -19,7 +19,7 @@ public class UI implements ActionListener
 {
 	
 	BinaryTree bt = new BinaryTree();
-	Node current;
+
 	JFrame screen;
 	JPanel upper;
 	JLabel titleLabel;
@@ -216,43 +216,43 @@ public class UI implements ActionListener
 		{
 			upper.setVisible(false);
 			lower.setVisible(false);
-			current = bt.root;
-			gameScreen(current.story,current.leLabel,current.rLabel);
+			bt.current = bt.root;
+			gameScreen(bt.current.story,bt.current.leLabel,bt.current.rLabel);
 		}
 		else if(e.getSource() == left)
 		{
 			upper.setVisible(false);
 			lower.setVisible(false);
-			if(current.left != null)
+			if(bt.current.left != null)
 			{
-				listAdd(current.leLabel);
-				current = current.left;
+				listAdd(bt.current.leLabel);
+				bt.current = bt.current.left;
 			}
-			if(current.isLeaf())
+			if(bt.current.isLeaf())
 			{
-				endScreen(current.story, current.type);
+				endScreen(bt.current.story, bt.current.type);
 			}
 			else
 			{
-				gameScreen(current.story,current.leLabel,current.rLabel);
+				gameScreen(bt.current.story,bt.current.leLabel,bt.current.rLabel);
 			}
 		}
 		else if(e.getSource() == right)
 		{
 			upper.setVisible(false);
 			lower.setVisible(false);
-			if(current.right != null)
+			if(bt.current.right != null)
 			{
-				listAdd(current.rLabel);
-				current = current.right;
+				listAdd(bt.current.rLabel);
+				bt.current = bt.current.right;
 			}
-			if(current.isLeaf())
+			if(bt.current.isLeaf())
 			{
-				endScreen(current.story, current.type);
+				endScreen(bt.current.story, bt.current.type);
 			}
 			else
 			{
-				gameScreen(current.story,current.leLabel,current.rLabel);
+				gameScreen(bt.current.story,bt.current.leLabel,bt.current.rLabel);
 			}
 		}
 		else if(e.getSource() == restart)
