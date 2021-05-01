@@ -3,6 +3,7 @@ package game;
 public class BinaryTree
 {
 	Node root;
+	Node current;
 	
 	public BinaryTree(int x, Storage story)
 	{
